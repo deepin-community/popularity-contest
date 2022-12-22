@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+# purge the config file which is created in the postinst script
+if [ "$1" = purge ] ; then
+    rm -f /etc/popularity-contest.conf /etc/cron.d/popularity-contest
+    rm -f /var/lib/popularity-contest/lastsub
+    if [ -d /var/lib/popularity-contest ] ; then
+        rmdir --ignore-fail-on-non-empty /var/lib/popularity-contest
+    fi
+fi
+
+if [ "$1" = "purge" ] && [ -e /usr/share/debconf/confmodule ]; then
+    # Source debconf library.
+    . /usr/share/debconf/confmodule
+    # Remove my changes to the db.
+    db_purge
+fi
+
+#DEBHELPER#
+

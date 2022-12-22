@@ -1,0 +1,28 @@
+Source: popularity-contest
+Section: misc
+Priority: optional
+Maintainer: Popularity Contest Developers <debian-popcon@lists.debian.org>
+Uploaders: Bill Allombert <ballombe@debian.org>
+Build-Depends: debhelper-compat (= 12)
+Homepage: https://popcon.debian.org/
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/popularity-contest-team/popularity-contest
+Vcs-Git: https://salsa.debian.org/popularity-contest-team/popularity-contest.git
+
+Package: popularity-contest
+Architecture: all
+Pre-Depends: debconf (>= 1.5.34) | cdebconf (>= 0.106)
+Depends: ${misc:Depends}, ${perl:Depends}, dpkg (>= 1.10)
+Recommends: gpg, cron | cron-daemon, default-mta | mail-transport-agent
+Suggests: anacron, tor, torsocks
+Provides: popcon
+Description: Vote for your favourite packages automatically
+ The popularity-contest package sets up a cron job that will
+ periodically anonymously submit to the Debian developers
+ statistics about the most used Debian packages on this system.
+ .
+ This information helps Debian make decisions such as which packages
+ should go on the first CD. It also lets Debian improve future versions
+ of the distribution so that the most popular packages are the ones which
+ are installed automatically for new users.
+
